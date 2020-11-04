@@ -3,6 +3,6 @@ NODE_ENV = production
 # sso登录地址
 VUE_APP_SSO_LOGIN_URL=http://sso.huanjutang.com/login
 # 主应用地址
-VUE_APP_MAIN_APP_URL=http://pangu.huanjutang.com/admin
+VUE_APP_MAIN_APP_URL=http://pangu.huanjutang.com/{{appName}}
 # API接口地址
 VUE_APP_BASE_API=http://admin-api.huanjutang.com/api
