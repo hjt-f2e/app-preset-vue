@@ -18,7 +18,7 @@ async function generate(dir, files, base = '', rootOptions = {}, options = {}) {
         } else {
             let content = fs.readFileSync(sourcePath, 'utf-8');
             
-            const sourceList = ['vue.config.js', 'index.js'];
+            const sourceList = ['vue.config.js', 'index.js', '_env.production', '_env.development', '_env.staging'];
             if (sourceList.indexOf(path.basename(filename)) !== -1) {
                 content = content.replace('{{name}}', rootOptions.projectName || '');
                 content = content.replace('{{appName}}', options.appName || '');
@@ -63,7 +63,7 @@ module.exports = (api, options, rootOptions) => {
                     "qiniu-js": "^3.1.1",
                     "urijs": "^1.19.2",
                     "vue": "^2.6.11",
-                    "vue-router": "^3.4.8",
+                    "vue-router": "^3.4.9",
                     "vuex": "^3.5.1",
                     "vuex-persist": "^3.1.3"
                 },
