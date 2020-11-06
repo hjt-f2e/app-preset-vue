@@ -1,24 +1,42 @@
-import Layout from '@/layout';
+const RouteView = {
+    name: 'RouteView',
+    render: (h) => h('router-view')
+};
 
 const adminRouter = {
-    path: '/config',
-    name: 'config',
-    component: Layout,
-    redirect: '/config/configIndex/',
-    meta: { title: '首页', icon: '' },
+    path: '/project',
+    name: 'project',
+    redirect: '/project/list',
+    component: RouteView,
+    meta: { title: '项目管理', icon: 'project' },
     children: [
         {
-            path: 'configIndex',
-            name: 'configIndex',
+            path: '/project/list',
+            name: 'projectList',
             component: () => import('@/views/admin/list'),
-            meta: { title: '列表' }
+            meta: { title: '用例列表' },
+            children: [
+                {
+                    path: 'detail',
+                    name: 'listDetail',
+                    component: () => import('@/views/admin/detail'),
+                    meta: { title: '楼盘详情页' }
+                }
+            ]
         },
         {
-            path: 'detail',
-            name: 'adminDetail',
-            component: () => import('@/views/admin/detail'),
-            meta: { title: '详情页' },
-            hidden: true, // 是否在菜单中显示
+            path: '/project/version',
+            name: 'versionList',
+            component: () => import('@/views/admin/detail2'),
+            meta: { title: '版本管理' },
+            children: [
+                {
+                    path: 'detail',
+                    name: 'versionDetail',
+                    component: () => import('@/views/admin/detail2'),
+                    meta: { title: '版本详情页' }
+                }
+            ]
         }
     ]
 };

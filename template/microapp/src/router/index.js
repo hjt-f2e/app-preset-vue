@@ -2,16 +2,26 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import NProgress from 'nprogress';
 import URI from 'urijs';
-
 import { message } from 'ant-design-vue';
+
 import store from '../store';
+import BasicLayout from '../layout/BasicLayout.vue';
 
 import adminRouter from './modules/admin';
+import dashboardRouter from './modules/dashboard';
 
 // 路由模块
-const routers = [
-    adminRouter
-];
+const routerMap = {
+    path: '/',
+    name: 'home',
+    component: BasicLayout,
+    redirect: '/dashboard',
+    meta: { title: '首页' },
+    children: [
+        dashboardRouter,
+        adminRouter
+    ]
+};
 
 Vue.use(Router);
 NProgress.configure({ showSpinner: false });
@@ -45,7 +55,7 @@ function createRouters(menus = []) {
         menusMap.set(item.menu_value, item.menu_name);
     });
 
-    return routers
+    return routerMap.children
         .filter(item => menusMap.has(item.name))
         .map(item => {
             const { children = [], ...rest } = item;
@@ -54,22 +64,28 @@ function createRouters(menus = []) {
                 rest.meta.title = formatName(menusMap.get(rest.name));
             }
 
-            const newChildren = children.filter(child => menusMap.has(child.name));
-            // 设置子菜单title（sso可以控制菜单title）
-            newChildren.forEach(child => {
-                if (child.meta && child.meta.title) {
-                    child.meta.title = formatName(menusMap.get(child.name));
-                }
-            });
+            if (Array.isArray(children) && children.length > 0) {
+                const newChildren = children.filter(child => menusMap.has(child.name));
+                // 设置子菜单title（sso可以控制菜单title）
+                newChildren.forEach(child => {
+                    if (child.meta && child.meta.title) {
+                        child.meta.title = formatName(menusMap.get(child.name));
+                    }
+                });
 
-            // 如果默认路由的redirect跳转路由没有权限，
-            // 那么就把父路由的默认重定向设置为第一个child的路由
-            if (newChildren.length > 0) {
-                rest.redirect = `${rest.path}/${newChildren[0].path}`;
+                // 如果默认路由的redirect跳转路由没有权限，
+                // 那么就把父路由的默认重定向设置为第一个child的路由
+                if (newChildren.length > 0) {
+                    rest.redirect = newChildren[0].path;
+                }
+
+                return {
+                    children: newChildren,
+                    ...rest
+                };
             }
 
             return {
-                children: newChildren,
                 ...rest
             };
         });
@@ -86,39 +102,34 @@ async function promission(to, from, next) {
 
         if (routerLength > 0) {
             next();
+        } else {
+            const userInfoData = await store.dispatch('user/getUserInfo');
 
-            return;
+            if (userInfoData.menus.length < 1) {
+                message.error('暂无该菜单权限');
+                next(false);
+            } else {
+                routerMap.children = createRouters(userInfoData.menus);
+                if (routerMap.children.length > 0) {
+                    const allowRouters = [routerMap];
+                    await store.dispatch('user/setRouter', allowRouters);
+                    router.addRoutes(allowRouters);
+
+                    const urlObj = new URI(to.redirectedFrom || to.path);
+                    urlObj.removeSearch('token');
+
+                    next({
+                        path: urlObj.toString(),
+                        query: to.query.params
+                    });
+                } else {
+                    next();
+                }
+            }
         }
-
-        const userInfoData = await store.dispatch('user/getUserInfo');
-
-        if (userInfoData.menus.length < 1) {
-            message.error('暂无该菜单权限');
-            next();
-
-            return;
-        }
-
-        const allowRouters = createRouters(userInfoData.menus);
-
-        if (allowRouters.length === 0) {
-            next();
-
-            return;
-        }
-
-        await store.dispatch('user/setRouter', allowRouters);
-        router.addRoutes(allowRouters);
-
-        const urlObj = new URI(to.redirectedFrom || to.path);
-        urlObj.removeSearch('token');
-
-        next({
-            path: urlObj.toString(),
-            query: to.query.params
-        });
     } else {
-        // // 登录必须跳转到主应用去登录
+        next(false);
+        // 登录必须跳转到主应用去登录
         const redirectUrl = `${process.env.VUE_APP_MAIN_APP_URL}${window.location.pathname}`;
         window.location.href = `${process.env.VUE_APP_SSO_LOGIN_URL}?redirect_url=${redirectUrl}`;
     }
