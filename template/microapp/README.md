@@ -4,13 +4,11 @@
 
 ### 简介
 
-hjt-micro-app 是一个基于微前端（[qiankun.js](https://qiankun.umijs.org/zh)）中台架构的子应用脚手架，内部集成了`菜单`、`路由`、`SSO`、`http模块`、`七牛上传`、`对接主应用模块`等功能，它可以帮组你快速创建应用。
+{{name}} 是一个基于微前端（[qiankun.js](https://qiankun.umijs.org/zh)）中台架构的子应用脚手架，内部集成了`菜单`、`路由`、`SSO`、`http模块`、`七牛上传`、`对接主应用模块`等功能，它可以帮组你快速创建应用。
 
 ### 准备
 
 你的本地环境需要安装 `node` 和 `git`。我们的技术栈基于 `ES2015+`、`Vue.Js`、`Vuex`、`Vue-Router`、`qiankun.js` 和 `antd-vue`，提前了解和学习这些知识会非常有帮助。
-
--- 鲁迅
 
 ### 安装
 
