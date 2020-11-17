@@ -1,8 +1,8 @@
 NODE_ENV = staging
 
 # sso登录地址
-VUE_APP_SSO_LOGIN_URL=http://staging-sso.huanjutang.com/login
+VUE_APP_SSO_LOGIN_URL=
 # 主应用地址
-VUE_APP_MAIN_APP_URL=http://staging-pangu.huanjutang.com/{{appName}}
+VUE_APP_MAIN_APP_URL=/{{appName}}
 # API接口地址
-VUE_APP_BASE_API=http://staging-admin-api.huanjutang.com/api
+VUE_APP_BASE_API=

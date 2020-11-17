@@ -25,29 +25,6 @@ module.exports = {
         },
         headers: {
             'Access-Control-Allow-Origin': '*',
-        },
-        proxy: {
-            '/upload': {
-                target: 'https://file.huanjutang.com',
-                changeOrigin: true,
-                secure: true,
-            },
-            '/auth': {
-                target: 'https://staging-pixiu-api.huanjutang.com/auth',
-                changeOrigin: true,
-                secure: true,
-                pathRewrite: {
-                    '^/auth/': '/'
-                }
-            },
-            '/rpc': {
-                target: 'https://staging-pixiu-api.huanjutang.com/rpc',
-                changeOrigin: true,
-                secure: true,
-                pathRewrite: {
-                    '^/rpc/': '/'
-                }
-            }
         }
     },
 

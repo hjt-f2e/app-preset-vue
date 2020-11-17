@@ -1,10 +1,10 @@
 NODE_ENV = production
 
 # api地址
-VUE_APP_BASE_API=https://sso.huanjutang.com/api/v1/
+VUE_APP_BASE_API=
 
 # sso登录地址
-VUE_APP_SSO_LOGIN_URL=http://sso.huanjutang.com/login
+VUE_APP_SSO_LOGIN_URL=
 
 # 貔貅子系统
 VUE_APP_PIXIU=//localhost:9528

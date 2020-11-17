@@ -6,8 +6,8 @@ import api from '../../api';
 
 export function createUploadHeaders() {
     const now = Date.now();
-    const appid = 'b70482a9c35b';
-    const secret = '26148d621ef74844918af182d63976b6';
+    const appid = '123456';
+    const secret = '123456';
     const randomStr = `${Math.floor(Math.random() * 1000000)}`;
     const salt = randomStr.padEnd(7, 'abcdefg');
 
