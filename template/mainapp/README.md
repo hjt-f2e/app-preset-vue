@@ -201,7 +201,3 @@ VUE_APP_PIXIU=//localhost:9528
 ## 祭“图”
 
 图片整理中
-
-## 奇思妙想
-
-- 可选UI组件（element-ui、ant desgin vue）

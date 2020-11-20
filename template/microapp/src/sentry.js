@@ -6,7 +6,7 @@ import { Integrations } from '@sentry/tracing';
 if (process.env.NODE_ENV === 'production') {
     Sentry.init({
         // TODO::更换为对应项目的 sentry dsn
-        dsn: 'https://4dc37eb1e607494f9413c641dc628477@sentry.huanjutang.com/4',
+        dsn: '',
         integrations: [
             new VueIntegration({
                 Vue,
@@ -14,9 +14,6 @@ if (process.env.NODE_ENV === 'production') {
             }),
             new Integrations.BrowserTracing()
         ],
-
-        // We recommend adjusting this value in production, or using tracesSampler
-        // for finer control
         tracesSampleRate: 1.0,
     });
 }

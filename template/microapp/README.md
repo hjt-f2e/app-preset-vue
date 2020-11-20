@@ -257,6 +257,104 @@ export default HelloRouter;
 
 图片整理中
 
-## 奇思妙想
+## Sentry 接入指南
 
-- 可选UI组件（element-ui、ant desgin vue）
+关于前端项目的安装指引: [https://docs.sentry.io/platforms/javascript/](https://docs.sentry.io/platforms/javascript/)
+
+**注意**:不建议 `qiankun.js` 主应用接入sentry
+### 1.安装SDK
+
+``` shell
+$ npm install --save  @sentry/browser @sentry/integrations @sentry/tracing
+```
+
+### 2.上传报错
+
+main.js
+
+``` javascript
+import * as Sentry from '@sentry/browser';
+import { Vue as VueIntegration } from '@sentry/integrations';
+import { Integrations } from '@sentry/tracing';
+
+if (['development', 'staging', 'production'].includes(process.env.NODE_ENV)) {
+    Sentry.init({
+        dsn: '',
+        integrations: [
+            new VueIntegration({
+                Vue,
+                tracing: true,
+                //  track child components
+                tracingOptions: {
+                    trackComponents: true,
+                },
+            }),
+            new Integrations.BrowserTracing(),
+        ],
+        tracesSampleRate: 1,
+        // 版本
+        release: `项目名称@版本号`,
+        // 环境
+        environment: '版本号',
+    });
+}
+```
+
+### 3.上传sourceMmap
+
+``` shell
+$ npm install --save-dev @sentry/webpack-plugin
+```
+
+vue.config.js
+
+```javascript
+const SentryWebpackPlugin = require("@sentry/webpack-plugin");
+
+module.exports = {
+    productionSourceMap: true, // 是否生成sourcemap
+    ...
+
+    configureWebpack: {
+        devtool: 'source-map' // soucemap
+    },
+
+    chainWebpack(config) {
+        config.plugin('sentry')
+            .use(SentryWebpackPlugin, [{
+                authToken: 'authToken',
+                org: '组织',
+                project: '项目名',
+                url: 'sentry URL',
+                include: './dist/static/js/',
+                release: `项目名称@版本号`,
+                urlPrefix: '/',
+            }]);
+    }
+}
+```
+
+### 4.上传后删除soucemap文件
+
+``` shell
+$ npm install filemanager-webpack-plugin -D
+```
+
+vue.config.js
+
+``` javascript
+const FileManagerPlugin = require('filemanager-webpack-plugin');
+
+configureWebpack: {
+    plugins: [
+            // 删除上报后的.map文件
+            new FileManagerPlugin({
+                events: {
+                    onEnd: {
+                        delete: ['dist/js/*.map']
+                    }
+                }
+            })
+    ]
+}
+```
