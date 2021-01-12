@@ -147,4 +147,5 @@ configureWebpack: {
 
 ## 奇思妙想
 
-- 可选UI组件（element-ui、ant desgin vue）
+- ~~可选UI组件（element-ui、ant desgin vue）~~
+- 增加开发接入手册
