@@ -1,7 +1,7 @@
 module.exports = [
     {
         type: "list",
-        name: "template",
+        name: 'template',
         message: "请选择应用模块",
         choices: [
             {
@@ -11,6 +11,21 @@ module.exports = [
             {
                 name: "微前端（主应用）",
                 value: "mainapp",
+            }
+        ]
+    },
+    {
+        type: 'list',
+        name: 'uiframework',
+        message: '请选择内置UI框架',
+        choices: [
+            {
+                name: 'Ant Design',
+                value: 'antd'
+            },
+            {
+                name: 'element UI',
+                value: 'element'
             }
         ]
     },

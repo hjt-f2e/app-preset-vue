@@ -1,0 +1,8 @@
+NODE_ENV = production
+
+# sso登录地址
+VUE_APP_SSO_LOGIN_URL=
+# 主应用地址
+VUE_APP_MAIN_APP_URL=/<%= options.appName %>
+# API接口地址
+VUE_APP_BASE_API=
