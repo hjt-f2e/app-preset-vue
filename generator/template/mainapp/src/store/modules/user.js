@@ -27,7 +27,6 @@ function removeToken() {
 const states = {
     token: getToken(),
     userInfo: {},
-    router: [],
     userApps: {}
 };
 
@@ -46,10 +45,6 @@ const mutations = {
         state.userInfo = userInfo;
     },
 
-    SET_ROUTER(state, router) {
-        state.router = router;
-    },
-
     SET_USER_APPS(state, value) {
         state.userApps = value;
     }
@@ -62,10 +57,6 @@ const actions = {
 
     resetToken({ commit }) {
         commit('REMOVE_TOKEN');
-    },
-
-    setRouter({ commit }, data = []) {
-        commit('SET_ROUTER', data);
     },
 
     getUserInfo({ commit }) {
@@ -105,7 +96,6 @@ const actions = {
 const getters = {
     token: state => state.token,
     userInfo: state => state.userInfo,
-    router: state => state.router,
     userApps: state => state.userApps
 };
 

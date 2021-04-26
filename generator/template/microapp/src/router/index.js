@@ -103,7 +103,7 @@ async function promission(to, from, next) {
 
     const hasToken = store.getters['user/token'];
     if (hasToken) {
-        const routerLength = (store.getters['user/router'] && store.getters['user/router'].length) || 0;
+        const routerLength = (store.getters['router/router'] && store.getters['router/router'].length) || 0;
 
         if (routerLength > 0) {
             next();
@@ -126,7 +126,7 @@ async function promission(to, from, next) {
                 routerMap.children = createRouters(userInfoData.menus);
                 if (routerMap.children.length > 0) {
                     const allowRouters = [routerMap];
-                    await store.dispatch('user/setRouter', allowRouters);
+                    await store.dispatch('router/setRouter', allowRouters);
                     router.addRoutes(allowRouters);
 
                     const urlObj = new URI(to.redirectedFrom || to.path);

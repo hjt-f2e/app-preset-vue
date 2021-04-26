@@ -89,9 +89,9 @@ clone 代码到本地
 #### 判断步骤
 
 1. 判断是否有 `token` 如果没有则跳转到 `sso` 登录
-2. 判断是否挂载应用 `store.getters['user/router']` 和 `store.getters['settings/appList']`，加载过就直接 `next` 跳转
+2. 判断是否挂载应用 `store.getters['router/router']` 和 `store.getters['settings/appList']`，加载过就直接 `next` 跳转
 3. 获取用户权限信息 `store.dispatch('user/getUserInfo')`，根据 `userApps` 字段通过 `createRouters` 过滤筛选好的应用路由
-4. 缓存过滤好的应用路由 `store.dispatch('user/setRouter')`，然后再通过 `router.addRoutes` 加入到路由表中
+4. 缓存过滤好的应用路由 `store.dispatch('router/setRouter')`，然后再通过 `router.addRoutes` 加入到路由表中
 5. `startQiankun` 内的 `createApps` 判断应用权限
 6. 缓存过滤好的应用权限 `store.dispatch('settings/setAppList')`，然后再通过 `registerMicroApp`、`start` 方法挂载 `qiankun.js` 子应用
 7. 跳转到目标路由
