@@ -98,7 +98,7 @@
         computed: {
             ...mapState({
                 routerList(state) {
-                    return state.user.router;
+                    return state.router.router;
                 }
             })
         },

@@ -87,9 +87,9 @@ clone 代码到本地
 #### 判断步骤
 
 1. 判断是否有`token` 如果没有则跳转到 `主应用` 登录
-2. 判断是否加载过路由 `store.getters['user/router']`，加载过就直接 `next` 跳转
+2. 判断是否加载过路由 `store.getters['router/router']`，加载过就直接 `next` 跳转
 3. 获取用户权限信息 `store.dispatch('user/getUserInfo')`，根据 `menus` 字段通过 `createRouter` 过滤筛选好的菜单路由
-4. 缓存过滤好的菜单路由 `store.dispatch('user/setRouter')`，然后再通过 `router.addRoutes` 加入到路由表中
+4. 缓存过滤好的菜单路由 `store.dispatch('router/setRouter')`，然后再通过 `router.addRoutes` 加入到路由表中
 5. 跳转到目标路由
 
 #### 结构说明

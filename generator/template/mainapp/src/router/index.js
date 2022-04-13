@@ -47,7 +47,7 @@ async function permession(to, from, next) {
 
     const hasToken = store.getters['user/token'];
     if (hasToken) {
-        const routerList = store.getters['user/router'];
+        const routerList = store.getters['router/router'];
         const appList = store.getters['settings/appList'];
 
         // 如果已经挂载了App和对应路由，那么就跳出循环
@@ -85,7 +85,7 @@ async function permession(to, from, next) {
         }
 
         router.addRoutes(allowRouters);
-        await store.dispatch('user/setRouter', allowRouters);
+        await store.dispatch('router/setRouter', allowRouters);
         await startQiankun();
         createWaterMark(store.getters['user/userInfo'].name);
 
