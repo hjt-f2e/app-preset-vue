@@ -12,7 +12,6 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 <%_ } _%>
 
-import './sentry';
 import store from './store';
 import router from './router';
 import { getCurrentCity } from './utils';

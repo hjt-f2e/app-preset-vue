@@ -193,11 +193,3 @@ const supportApps = [
 ```
 VUE_APP_PIXIU=//localhost:9528
 ```
-
-## 调试指南
-
-文档整理中
-
-## 祭“图”
-
-图片整理中
