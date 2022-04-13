@@ -1,0 +1,10 @@
+NODE_ENV = development
+
+# sso登录地址
+VUE_APP_SSO_LOGIN_URL=https://staging-sso.huanjutang.com/login
+# 主应用地址
+VUE_APP_MAIN_APP_URL=https://pangu.huanjutang.com
+# API接口地址
+VUE_APP_BASE_API= 'https://staging-fxt-site-api.huanjutang.com'
+# cookie域
+VUE_APP_DOMAIN = ''

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%- decodeURIComponent('%3C%25%3D%20BASE_URL%20%25%3E') %>favicon.ico">
+    <title><%- decodeURIComponent('%3C%25%3D%20htmlWebpackPlugin.options.title%20%25%3E') %></title>
+    <!-- 这儿必须设置一个空style标签，否则会报错 -->
+    <style></style>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%- decodeURIComponent('%3C%25%3D%20htmlWebpackPlugin.options.title%20%25%3E') %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="micro-app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

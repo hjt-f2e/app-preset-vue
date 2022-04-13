@@ -5,11 +5,15 @@ module.exports = [
         message: "请选择应用模块",
         choices: [
             {
-                name: "微前端（子应用）",
+                name: "子应用 vue2",
                 value: "microapp",
             },
             {
-                name: "微前端（主应用）",
+                name: "子应用 vue3",
+                value: "microappvue3"
+            },
+            {
+                name: "主应用",
                 value: "mainapp",
             }
         ]
@@ -17,7 +21,7 @@ module.exports = [
     {
         type: 'list',
         name: 'uiframework',
-        message: '请选择内置UI框架',
+        message: '请选择内置UI框架(vue3子应用目前只支持element UI)',
         choices: [
             {
                 name: 'Ant Design',

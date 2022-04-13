@@ -1,0 +1,50 @@
+{
+    // 自动保存并修复格式
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "vetur.format.options.tabSize": 4,
+    "javascript.validate.enable": false,
+    "eslint.validate": [
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "html",
+            "autoFix": true
+        }
+    ],
+
+    "files.associations": {
+        "*.cjson": "jsonc",
+        "*.js": "javascript"
+    },
+    "[vue]": {},
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[javascriptreact]": {},
+    "editor.suggestSelection": "first",
+    "vscode_custom_css.imports": [
+    ],
+    "vscode_custom_css.policy": true,
+    "eslint.alwaysShowStatus": true,
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "editor.fontLigatures": null,
+    "window.zoomLevel": 0,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "path-intellisense.absolutePathToWorkspace": false,
+    "path-intellisense.extensionOnImport": true,
+    "path-intellisense.autoSlashAfterDirectory": true
+}
